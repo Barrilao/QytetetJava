@@ -52,6 +52,10 @@ public class TituloPropiedad {
     int getHipotecaBase() {
         return hipotecaBase;
     }
+    
+     public Jugador getPropietario(){
+        return propietario;
+    }
 
     int getPrecioEdificar() {
         return precioEdificar;

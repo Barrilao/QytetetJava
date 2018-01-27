@@ -10,5 +10,5 @@ package qytetetjava;
  * @author srjuan
  */
 public enum TipoSorpresa {PAGARCOBRAR,   IRACASILLA,   PORCASAHOTEL, 
-PORJUGADOR,   SALIRCARCEL, CONVERTIRME;}
+PORJUGADOR, SALIRCARCEL, CONVERTIRME;}
 

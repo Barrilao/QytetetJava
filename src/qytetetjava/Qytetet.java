@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import GUIQytetet.Dado;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class Qytetet {
     private static int MAX_CASILLAS = 20;
     private static int PRECIO_LIBERTAD = 200;
     private static int SALDO_SALIDA = 1000;
-    private Dado dado = Dado.getInstance();
+    //private Dado dado = Dado.getInstance();
     private Sorpresa CartaActual = null;
     private Jugador JugadorActual = null;
     private ArrayList<Sorpresa> mazo = new ArrayList();
@@ -43,6 +44,13 @@ public class Qytetet {
 
     public Jugador getJugadorActual() {
         return JugadorActual;
+    }
+ public String getTextoCarta(){
+        if(CartaActual == null)
+            return null;
+        
+        else
+            return CartaActual.getTexto();
     }
     
     public boolean aplicarSorpresa(){ 
@@ -150,7 +158,8 @@ public class Qytetet {
     public boolean intentarSalirCarcel(MetodoSalirCarcel metodo) { 
         boolean libre = false;
         if(metodo==MetodoSalirCarcel.TIRANDODADO){
-            int valorDado = this.dado.tirar();
+            Dado dado = GUIQytetet.Dado.getInstance();
+            int valorDado = dado.nextNumber();
             if(valorDado>5)
                 libre = true;
         }
@@ -163,8 +172,9 @@ public class Qytetet {
         return libre;
     }
     
-    public boolean jugar() { 
-        int valorDado = this.dado.tirar();
+    public boolean jugar() {
+        Dado dado = GUIQytetet.Dado.getInstance();
+        int valorDado = dado.nextNumber();
         Casilla casillaPosicion = this.JugadorActual.getCasillaActual();
         Casilla nuevaCasilla = this.tablero.obtenerNuevaCasilla(casillaPosicion, valorDado);
         boolean tienePropietario=this.JugadorActual.actualizarPosicion(nuevaCasilla);
@@ -296,6 +306,6 @@ public class Qytetet {
   }
    @Override
     public String toString() {
-        return "Qytetet{" + "dado=" + dado + ", tablero=" + tablero + ", jugadorActual=" + JugadorActual + ", jugadores=" + jugadores + ", mazo=" + mazo + ", cartaActual=" + CartaActual + '}';
+        return "Qytetet{" + ", tablero=" + tablero + ", jugadorActual=" + JugadorActual + ", jugadores=" + jugadores + ", mazo=" + mazo + ", cartaActual=" + CartaActual + '}';
     }
 }
